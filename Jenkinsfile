@@ -13,12 +13,14 @@ spec:
     - name: docker-deamon
       image: docker:dind
       imagePullPolicy: Always
+      command: ["/bin/sh", "-c", "sleep 1d"]
       securityContext:
         privileged: true
 ''') {
     node(POD_LABEL) {
         stage('Testing') {
             container('docker') {
+                sh 'sleep 30'
                 sh 'docker info'
             }
         }
