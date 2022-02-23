@@ -6,6 +6,7 @@ spec:
     - name: docker
       image: docker:latest
       imagePullPolicy: Always
+      command: ["/bin/sh", "-c", "sleep 1d"]
       env:
       - name: DOCKER_HOST
         value: tcp://localhost:2375
