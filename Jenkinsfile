@@ -1,42 +1,27 @@
-import jenkins.PodTemplate;
-
-def podTemplate = new PodTemplate();
-
-podTemplate.dockerTemplate {
-    node(POD_LABEL) {
-        container('docker') {
-            sh 'echo hello from $POD_CONTAINER'
-            sh 'docker info'
-        }
+podTemplate(
+    containers: [
+        containerTemplate(
+            image: 'docker', 
+            name: 'docker', 
+            command: 'cat', 
+            ttyEnabled: true
+        )
+    ]
+) {
+    podTemplate(
+        containers: [
+            containerTemplate(
+                image: 'maven',
+                name: 'maven',
+                command: 'cat',
+                ttyEnabled: true
+            )
+        ]
+    ) {
+      node(POD_LABEL) { 
+          sh 'echo hello from $POD_CONTAINER'
+          sh 'mvn -version'
+          sh 'docker info'
+      }
     }
 }
-
-// pipeline {
-//     agent {
-//         kubernetes {
-//             yaml """
-// apiVersion: v1
-// kind: Pod
-// spec:
-//     containers:
-//     - name: docker
-//       image: docker:latest
-//       imagePullPolicy: Always
-//       command: ["cat"]
-//       tty: true
-//       volumeMounts:
-//         - name: docker-sock
-//           hostPath: /var/run/docker.sock
-// """
-//         }
-//     }
-//     stages {
-//         stage('Build') {
-//             steps {
-//                 container('docker') {
-//                     sh 'docker info'
-//                 }
-//             }
-//         }
-//     }
-// }
