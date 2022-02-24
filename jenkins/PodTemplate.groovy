@@ -1,6 +1,6 @@
-package jenkins;
+#!groovy
 
-public void dockerTemplate(body) {
+def dockerTemplate(body) {
     podTemplate(
         container: [
             containerTemplate(

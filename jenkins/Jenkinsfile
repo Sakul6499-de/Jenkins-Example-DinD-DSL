@@ -1,8 +1,4 @@
-import PodTemplate
-
-podTemplate = new PodTemplate();
-
-podTemplate.dockerTemplate {
+PodTemplate.dockerTemplate {
     node(POD_LABEL) {
         container('docker') {
             sh 'echo hello from $POD_CONTAINER'
