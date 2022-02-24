@@ -8,20 +8,9 @@ podTemplate(
         )
     ]
 ) {
-    podTemplate(
-        containers: [
-            containerTemplate(
-                image: 'maven',
-                name: 'maven',
-                command: 'cat',
-                ttyEnabled: true
-            )
-        ]
-    ) {
-      node(POD_LABEL) { 
-          sh 'echo hello from $POD_CONTAINER'
-          sh 'mvn -version'
-          sh 'docker info'
-      }
+    node(POD_LABEL) { 
+        sh 'echo hello from $POD_CONTAINER'
+        sh 'mvn -version'
+        sh 'docker info'
     }
 }
