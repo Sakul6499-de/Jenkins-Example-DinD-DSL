@@ -1,4 +1,4 @@
-import .jenkins.PodTemplate
+import jenkins.PodTemplate
 
 podTemplate = new PodTemplate();
 
