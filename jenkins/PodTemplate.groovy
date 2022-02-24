@@ -1,4 +1,5 @@
 #!groovy
+package jenkins;
 
 def dockerTemplate(body) {
     podTemplate(

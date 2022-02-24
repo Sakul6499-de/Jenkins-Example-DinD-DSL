@@ -1,4 +1,8 @@
-PodTemplate.dockerTemplate {
+import jenkins.PodTemplate;
+
+def podTemplate = new PodTemplate();
+
+podTemplate.dockerTemplate {
     node(POD_LABEL) {
         container('docker') {
             sh 'echo hello from $POD_CONTAINER'
