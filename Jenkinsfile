@@ -9,12 +9,15 @@ podTemplate(
     ]
 ) {
     node(POD_LABEL) { 
-        container('docker') {
-            sh 'echo hello from $POD_CONTAINER'
-            sh 'pwd'
-            sh 'ls -al .'
-            sh 'ls -al /home/jenkins/agent/workspace/*'
-            sh 'docker build .'
+        stage('Setup') {
+            container('docker') {
+                git credentialsId: 'GitHub', url: 'https://github.com/Sakul6499-de/Jenkins-DinD-Test-Repo.git', branch: 'main'
+            }
+        }
+        stage('Build') {
+            container('docker') {
+                sh 'docker build .'
+            }
         }
     }
 }
