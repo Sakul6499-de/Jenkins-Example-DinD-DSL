@@ -9,8 +9,8 @@ podTemplate(
     ]
 ) {
     node(POD_LABEL) { 
+        sh 'env'
         sh 'echo hello from $POD_CONTAINER'
-        sh 'mvn -version'
         sh 'docker info'
     }
 }
