@@ -6,6 +6,12 @@ podTemplate(
             command: 'cat', 
             ttyEnabled: true
         )
+    ],
+    volumes: [
+        hostPathVolume(
+            hostPath: '/var/run/docker.sock', 
+            mountPath: '/var/run/docker.sock'
+        )
     ]
 ) {
     node(POD_LABEL) { 
