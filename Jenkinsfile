@@ -11,6 +11,8 @@ podTemplate(
     node(POD_LABEL) { 
         container('docker') {
             sh 'echo hello from $POD_CONTAINER'
+            sh 'pwd'
+            sh 'ls -al .'
             sh 'docker build .'
         }
     }
