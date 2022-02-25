@@ -10,9 +10,8 @@ podTemplate(
 ) {
     node(POD_LABEL) { 
         container('docker') {
-            sh 'env'
             sh 'echo hello from $POD_CONTAINER'
-            sh 'docker info'
+            sh 'docker build .'
         }
     }
 }
