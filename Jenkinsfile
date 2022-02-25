@@ -13,6 +13,7 @@ podTemplate(
             sh 'echo hello from $POD_CONTAINER'
             sh 'pwd'
             sh 'ls -al .'
+            sh 'ls -al /home/jenkins/agent/*'
             sh 'docker build .'
         }
     }
